@@ -1,0 +1,19 @@
+{
+  "name": "mqxliff",
+  "version": "0.1.0",
+  "description": "Minimalistic MQXLIFF parser and serializer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MQXLIFF",
+    "parser",
+    "serializer"
+  ],
+  "author": "Gabor L Ugray <gabor.ugray@kilgray.com>",
+  "license": "MIT",
+  "dependencies": {
+    "xml-js": "^1.6.2"
+  }
+}
