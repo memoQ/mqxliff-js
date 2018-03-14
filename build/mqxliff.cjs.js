@@ -6,7 +6,7 @@ var xmlJs = require('xml-js');
 var RunType;
 (function (RunType) {
     /** The run contains text. */
-    RunType["Text"] = "Text";
+    RunType["Text"] = "text";
     /** The run is a single structural tag, like "{1}". */
     RunType["StructuralTag"] = "StructuralTag";
     /** The run is a single opening inline tag. */
@@ -61,6 +61,8 @@ function parseTag(str) {
     return res;
 }
 function getRichText(elms) {
+    console.log("elms");
+    console.log(elms);
     var res = new Array();
     var range = makeRange();
     var idToFormat = {};
@@ -122,6 +124,132 @@ function getRichText(elms) {
     if (range.content.length > 0) res.push(range);
     return res;
 }
+function makeElement(name, type, attr) {
+    var element = {
+        attributes: attr === undefined ? false : attr,
+        name: name === undefined ? false : name,
+        type: type === undefined ? false : type,
+        elements: new Array({
+            text: "{}",
+            type: "text"
+        })
+    };
+    return element;
+}
+function setRichText(formatRange) {
+    console.log("setRichText");
+    var elms = new Array();
+    var bold = false;
+    var boldId = 0;
+    var italic = false;
+    var italicId = 0;
+    var subscript = false;
+    var subscriptId = 0;
+    var superscript = false;
+    var superscriptId = 0;
+    var underlined = false;
+    var underlinedId = 0;
+    var id = 1;
+    for (var i = 0; i < formatRange.length; i++) {
+        //var attributes = new Array();
+        if (formatRange[i].bold && bold == false) {
+            bold = true;
+            var attr = {
+                ctype: "bold",
+                id: id.toString()
+            };
+            boldId = id;
+            /*elements.name = "bpt";
+            elements.type = "element";
+            elements.attributes.push(attr);*/
+            elms.push(makeElement("bpt", "element", attr));
+            id++;
+        }
+        if (formatRange[i].italic) {
+            italic = true;
+            var attr = {
+                ctype: "italic",
+                id: id.toString()
+            };
+            italicId = id;
+            elms.push(makeElement("bpt", "element", attr));
+            id++;
+        }
+        if (formatRange[i].subscript) {
+            subscript = true;
+            var attr = {
+                ctype: "x-sub",
+                id: id.toString()
+            };
+            subscriptId = id;
+            elms.push(makeElement("bpt", "element", attr));
+            id++;
+        }
+        if (formatRange[i].superscript) {
+            superscript = true;
+            var attr = {
+                ctype: "x-sup",
+                id: id.toString()
+            };
+            superscriptId = id;
+            elms.push(makeElement("bpt", "element", attr));
+            id++;
+        }
+        if (formatRange[i].underlined) {
+            underlined = true;
+            var attr = {
+                ctype: "underlined",
+                id: id.toString()
+            };
+            underlinedId = id;
+            elms.push(makeElement("bpt", "element", attr));
+            id++;
+        }
+        if (formatRange[i].bold === false && bold === true) {
+            console.log("add bold!!!! " + boldId);
+            bold = false;
+            var attrclose = {
+                id: boldId.toString()
+            };
+            elms.push(makeElement("ept", "element", attrclose));
+        }
+        if (formatRange[i].italic === false && italic === true) {
+            italic = false;
+            var attrclose = {
+                id: italicId.toString()
+            };
+            elms.push(makeElement("ept", "element", attrclose));
+        }
+        if (formatRange[i].subscript === false && subscript === true) {
+            subscript = false;
+            var attrclose = {
+                id: subscriptId.toString()
+            };
+            elms.push(makeElement("ept", "element", attrclose));
+        }
+        if (formatRange[i].superscript === false && superscript === true) {
+            superscript = false;
+            var attrclose = {
+                id: superscriptId.toString()
+            };
+            elms.push(makeElement("ept", "element", attrclose));
+        }
+        if (formatRange[i].underlined === false && underlined === true) {
+            underlined = false;
+            var attrclose = {
+                id: underlinedId.toString()
+            };
+            elms.push(makeElement("ept", "element", attrclose));
+        }
+        for (var cv = 0; formatRange[i].content.length > cv; cv++) {
+            /*if(formatRange[i].content[cv].type === RunType.Text) {
+                formatRange[i].content[cv].type = RunType.Text;
+            }*/
+            elms.push(formatRange[i].content[cv]);
+        }
+    }
+    return elms;
+}
 function getPlainText(elms) {
     var res = "";
     for (var i = 0; i != elms.length; ++i) {
@@ -132,7 +260,7 @@ function getPlainText(elms) {
     return res;
 }
 function tunit(jobj) {
-    this.jobj = jobj;
+    //this.jobj = jobj;
     return {
         status: function () {
             return jobj.attributes["mq:status"];
@@ -140,11 +268,20 @@ function tunit(jobj) {
         matchRate: function () {
             if (jobj.attributes["mq:percent"]) return jobj.attributes["mq:percent"] * 1;else return 0;
         },
-        srcPlain: function () {
+        srcPlain: function (txt) {
+            var segElm;
             for (var i = 0; i != jobj.elements.length; ++i) {
                 if (jobj.elements[i].name == "source") {
-                    return getPlainText(jobj.elements[i].elements);
+                    segElm = jobj.elements[i];
+                    break;
                 }
+            }
+            if (txt === undefined) {
+                for (var i = 0; i != jobj.elements.length; ++i) {
+                    return getPlainText(segElm.elements);
+                }
+            } else if (typeof txt === 'string') {
+                segElm.elements = [{ type: "text", text: txt }];
             }
         },
         trgPlain: function (txt) {
@@ -163,33 +300,45 @@ function tunit(jobj) {
                 segElm.elements = [{ type: "text", text: txt }];
             }
         },
-        srcRich: function () {
-            for (var i = 0; i != jobj.elements.length; ++i) {
-                if (jobj.elements[i].name == "source") {
-                    return getRichText(jobj.elements[i].elements);
+        srcRich: function (seg) {
+            if (seg === undefined) {
+                for (var i = 0; i != jobj.elements.length; ++i) {
+                    if (jobj.elements[i].name == "source") {
+                        return getRichText(jobj.elements[i].elements);
+                    }
+                }
+            } else {
+                for (var i = 0; i != jobj.elements.length; ++i) {
+                    if (jobj.elements[i].name == "source") {
+                        console.log("before changes");
+                        console.log(jobj.elements[i].elements);
+                        jobj.elements[i].elements = setRichText(seg);
+                        console.log("after changes");
+                        console.log(jobj.elements[i].elements);
+                    }
                 }
             }
         },
         trgRich: function (seg) {
-            var segElm;
-            for (var i = 0; i != jobj.elements.length; ++i) {
-                if (jobj.elements[i].name == "target") {
-                    segElm = jobj.elements[i];
-                    break;
-                }
-            }
             if (seg === undefined) {
                 for (var i = 0; i != jobj.elements.length; ++i) {
-                    return getRichText(segElm.elements);
+                    if (jobj.elements[i].name == "target") {
+                        return getRichText(jobj.elements[i].elements);
+                    }
                 }
             } else {
-                // TO-DO
+                for (var i = 0; i != jobj.elements.length; ++i) {
+                    if (jobj.elements[i].name == "target") {
+                        console.log(jobj.elements[i].elements);
+                        jobj.elements[i].elements = setRichText(seg);
+                    }
+                }
             }
         }
     };
 }
 function tdoc(jobj) {
-    this.jobj = jobj;
+    //var jobj = jobj;
     var eFile = jobj.elements[0].elements[0];
     var tuArr;
     for (var i = 0; i != eFile.elements.length; ++i) {
@@ -197,7 +346,7 @@ function tdoc(jobj) {
             tuArr = eFile.elements[i].elements;
         }
     }
-    this.tuArr = tuArr;
+    //this.tuArr = tuArr;
     return {
         info: function () {
             var eFile = jobj.elements[0].elements[0];

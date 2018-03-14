@@ -3,7 +3,7 @@
   /** The content type of a single [[ContentRun]] within a [[FormatRange]]. */
   export enum RunType {
     /** The run contains text. */
-    Text = "Text",
+    Text = "text",
     /** The run is a single structural tag, like "{1}". */
     StructuralTag = "StructuralTag",
     /** The run is a single opening inline tag. */
@@ -86,7 +86,7 @@
     matchRate(): number;
 
     /** Returns source segment as plain text (excludes all tags and formatting). */
-    srcPlain(): String | undefined;
+    srcPlain(txt?: string): String | undefined;
 
     /**
      * Gets or sets target segment as plain text.
@@ -101,7 +101,7 @@
      * Building the array involves work. If you are accessing segments repeatedly, cache the returned
      * data in your code.
      */
-    srcRich(): FormatRange[] | undefined;
+    srcRich(seg?: FormatRange[]): FormatRange[] | undefined;
 
     /**
      * Gets or sets the target segment in its full, rich representation.
