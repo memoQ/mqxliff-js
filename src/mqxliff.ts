@@ -101,15 +101,19 @@ function getRichText(elms): FormatRange[] {
     return res;
 }
 
-function makeElement(name: string, type: string, attr: any) {
+function makeElement(name: string, type: string, attr: any, elements?: any) {
+
     var element = {
         attributes: attr === undefined ? false : attr,
         name: name === undefined ? false : name,
         type: type === undefined ? false : type,
-        elements: new Array({
+        elements: elements === undefined ? new Array({
             text: "{}",
             type: "text"
-        }) 
+        }) : new Array({
+            text: elements,
+            type: "text"
+        })
     };
     return element;
 }
@@ -129,18 +133,15 @@ function setRichText(formatRange: FormatRange[]): any {
     var underlined = false;
     var underlinedId = 0;
     var id = 1;
-    for (var i = 0; i < formatRange.length; i++ ) {
-        //var attributes = new Array();
+    var openId = new Array();
+    for (var i = 0; i < formatRange.length; i++) {
         if (formatRange[i].bold && bold == false) {
             bold = true;
             var attr = {
                 ctype: "bold",
                 id: id.toString()
             }
-            boldId=id;
-            /*elements.name = "bpt";
-            elements.type = "element";
-            elements.attributes.push(attr);*/
+            boldId = id;
             elms.push(makeElement("bpt", "element", attr));
             id++;
         }
@@ -186,7 +187,7 @@ function setRichText(formatRange: FormatRange[]): any {
         }
 
         if (formatRange[i].bold === false && bold === true) {
-            console.log("add bold!!!! " +boldId );
+            console.log("add bold!!!! " + boldId);
             bold = false;
             var attrclose = {
                 id: boldId.toString()
@@ -222,10 +223,63 @@ function setRichText(formatRange: FormatRange[]): any {
             elms.push(makeElement("ept", "element", attrclose));
         }
         for (var cv = 0; formatRange[i].content.length > cv; cv++) {
-            /*if(formatRange[i].content[cv].type === RunType.Text) {
-                formatRange[i].content[cv].type = RunType.Text;
-            }*/
-            elms.push(formatRange[i].content[cv]);
+            if (formatRange[i].content[cv].type === RunType.OpenTag) {
+                openId.push(id);
+                var attrTag = {
+                    id: id.toString()
+                }
+                id++;
+
+                var tag = "<" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val+"\"";
+
+                    }
+                }
+                tag += ">"
+                elms.push(makeElement("bpt", "element", attrTag, tag));
+            }
+            if (formatRange[i].content[cv].type === RunType.EmptyTag) {
+                
+                var attrTag = {
+                    id: id.toString()
+                }
+                id++;
+
+                var tag = "<" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val+"\"";
+
+                    }
+                }
+                tag += "/>"
+                elms.push(makeElement("ph", "element", attrTag, tag));
+            }
+            if (formatRange[i].content[cv].type === RunType.CloseTag) {
+                var closeId = openId.pop();
+                var attrCTag = {
+                    id: closeId.toString()
+                }
+                var tag = "</" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val+"\"";
+
+                    }
+                }
+                tag += ">"
+                elms.push(makeElement("ept", "element", attrCTag, tag));
+            }
+
+            if (formatRange[i].content[cv].type === RunType.Text) {
+                elms.push(formatRange[i].content[cv]);
+
+            }
         }
     }
     return elms;
@@ -295,11 +349,7 @@ function tunit(jobj: any): TU {
             } else {
                 for (var i = 0; i != jobj.elements.length; ++i) {
                     if (jobj.elements[i].name == "source") {
-                        console.log("before changes");
-                        console.log(jobj.elements[i].elements);
                         jobj.elements[i].elements = setRichText(seg);
-                        console.log("after changes");
-                        console.log(jobj.elements[i].elements);
                     }
                 }
             }
@@ -325,8 +375,6 @@ function tunit(jobj: any): TU {
 }
 
 function tdoc(jobj: any): Document {
-    //var jobj = jobj;
-
     var eFile = jobj.elements[0].elements[0];
     var tuArr;
     for (var i = 0; i != eFile.elements.length; ++i) {
@@ -334,7 +382,6 @@ function tdoc(jobj: any): Document {
             tuArr = eFile.elements[i].elements;
         }
     }
-    //this.tuArr = tuArr;
 
     return {
         info: function () {
@@ -359,13 +406,6 @@ function tdoc(jobj: any): Document {
         }
     };
 }
-
-
-
-
-
-
-
 
 /**
  * Parses a memoQ bilingual XLIFF file.

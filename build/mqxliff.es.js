@@ -122,13 +122,16 @@ function getRichText(elms) {
     if (range.content.length > 0) res.push(range);
     return res;
 }
-function makeElement(name, type, attr) {
+function makeElement(name, type, attr, elements) {
     var element = {
         attributes: attr === undefined ? false : attr,
         name: name === undefined ? false : name,
         type: type === undefined ? false : type,
-        elements: new Array({
+        elements: elements === undefined ? new Array({
             text: "{}",
+            type: "text"
+        }) : new Array({
+            text: elements,
             type: "text"
         })
     };
@@ -148,8 +151,8 @@ function setRichText(formatRange) {
     var underlined = false;
     var underlinedId = 0;
     var id = 1;
+    var openId = new Array();
     for (var i = 0; i < formatRange.length; i++) {
-        //var attributes = new Array();
         if (formatRange[i].bold && bold == false) {
             bold = true;
             var attr = {
@@ -157,9 +160,6 @@ function setRichText(formatRange) {
                 id: id.toString()
             };
             boldId = id;
-            /*elements.name = "bpt";
-            elements.type = "element";
-            elements.attributes.push(attr);*/
             elms.push(makeElement("bpt", "element", attr));
             id++;
         }
@@ -240,10 +240,55 @@ function setRichText(formatRange) {
             elms.push(makeElement("ept", "element", attrclose));
         }
         for (var cv = 0; formatRange[i].content.length > cv; cv++) {
-            /*if(formatRange[i].content[cv].type === RunType.Text) {
-                formatRange[i].content[cv].type = RunType.Text;
-            }*/
-            elms.push(formatRange[i].content[cv]);
+            if (formatRange[i].content[cv].type === RunType.OpenTag) {
+                openId.push(id);
+                var attrTag = {
+                    id: id.toString()
+                };
+                id++;
+                var tag = "<" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val + "\"";
+                    }
+                }
+                tag += ">";
+                elms.push(makeElement("bpt", "element", attrTag, tag));
+            }
+            if (formatRange[i].content[cv].type === RunType.EmptyTag) {
+                var attrTag = {
+                    id: id.toString()
+                };
+                id++;
+                var tag = "<" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val + "\"";
+                    }
+                }
+                tag += "/>";
+                elms.push(makeElement("ph", "element", attrTag, tag));
+            }
+            if (formatRange[i].content[cv].type === RunType.CloseTag) {
+                var closeId = openId.pop();
+                var attrCTag = {
+                    id: closeId.toString()
+                };
+                var tag = "</" + formatRange[i].content[cv].name;
+                var attrs = formatRange[i].content[cv].attrs;
+                if (attrs !== undefined) {
+                    for (var cv2 = 0; attrs.length > cv2; cv2++) {
+                        tag += " " + attrs[cv2].attr + "=\"" + attrs[cv2].val + "\"";
+                    }
+                }
+                tag += ">";
+                elms.push(makeElement("ept", "element", attrCTag, tag));
+            }
+            if (formatRange[i].content[cv].type === RunType.Text) {
+                elms.push(formatRange[i].content[cv]);
+            }
         }
     }
     return elms;
@@ -308,11 +353,7 @@ function tunit(jobj) {
             } else {
                 for (var i = 0; i != jobj.elements.length; ++i) {
                     if (jobj.elements[i].name == "source") {
-                        console.log("before changes");
-                        console.log(jobj.elements[i].elements);
                         jobj.elements[i].elements = setRichText(seg);
-                        console.log("after changes");
-                        console.log(jobj.elements[i].elements);
                     }
                 }
             }
@@ -336,7 +377,6 @@ function tunit(jobj) {
     };
 }
 function tdoc(jobj) {
-    //var jobj = jobj;
     var eFile = jobj.elements[0].elements[0];
     var tuArr;
     for (var i = 0; i != eFile.elements.length; ++i) {
@@ -344,7 +384,6 @@ function tdoc(jobj) {
             tuArr = eFile.elements[i].elements;
         }
     }
-    //this.tuArr = tuArr;
     return {
         info: function () {
             var eFile = jobj.elements[0].elements[0];
