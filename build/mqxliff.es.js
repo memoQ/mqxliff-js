@@ -138,7 +138,6 @@ function makeElement(name, type, attr, elements) {
     return element;
 }
 function setRichText(formatRange) {
-    console.log("setRichText");
     var elms = new Array();
     var bold = false;
     var boldId = 0;
@@ -204,7 +203,6 @@ function setRichText(formatRange) {
             id++;
         }
         if (formatRange[i].bold === false && bold === true) {
-            console.log("add bold!!!! " + boldId);
             bold = false;
             var attrclose = {
                 id: boldId.toString()
@@ -286,6 +284,14 @@ function setRichText(formatRange) {
                 tag += ">";
                 elms.push(makeElement("ept", "element", attrCTag, tag));
             }
+            if (formatRange[i].content[cv].type === RunType.StructuralTag) {
+                var attrTag = {
+                    id: id.toString()
+                };
+                id++;
+                var attrs = formatRange[i].content[cv].attrs;
+                elms.push(makeElement("x", "element", attrTag));
+            }
             if (formatRange[i].content[cv].type === RunType.Text) {
                 elms.push(formatRange[i].content[cv]);
             }
@@ -303,7 +309,6 @@ function getPlainText(elms) {
     return res;
 }
 function tunit(jobj) {
-    //this.jobj = jobj;
     return {
         status: function () {
             return jobj.attributes["mq:status"];

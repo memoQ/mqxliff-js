@@ -119,7 +119,6 @@ function makeElement(name: string, type: string, attr: any, elements?: any) {
 }
 
 function setRichText(formatRange: FormatRange[]): any {
-    console.log("setRichText");
     var elms = new Array();
 
     var bold = false;
@@ -187,7 +186,6 @@ function setRichText(formatRange: FormatRange[]): any {
         }
 
         if (formatRange[i].bold === false && bold === true) {
-            console.log("add bold!!!! " + boldId);
             bold = false;
             var attrclose = {
                 id: boldId.toString()
@@ -229,7 +227,6 @@ function setRichText(formatRange: FormatRange[]): any {
                     id: id.toString()
                 }
                 id++;
-
                 var tag = "<" + formatRange[i].content[cv].name;
                 var attrs = formatRange[i].content[cv].attrs;
                 if (attrs !== undefined) {
@@ -242,12 +239,10 @@ function setRichText(formatRange: FormatRange[]): any {
                 elms.push(makeElement("bpt", "element", attrTag, tag));
             }
             if (formatRange[i].content[cv].type === RunType.EmptyTag) {
-                
                 var attrTag = {
                     id: id.toString()
                 }
                 id++;
-
                 var tag = "<" + formatRange[i].content[cv].name;
                 var attrs = formatRange[i].content[cv].attrs;
                 if (attrs !== undefined) {
@@ -275,10 +270,16 @@ function setRichText(formatRange: FormatRange[]): any {
                 tag += ">"
                 elms.push(makeElement("ept", "element", attrCTag, tag));
             }
-
+            if (formatRange[i].content[cv].type === RunType.StructuralTag) {
+                var attrTag = {
+                    id: id.toString()
+                }
+                id++;
+                var attrs = formatRange[i].content[cv].attrs;
+                elms.push(makeElement("x", "element", attrTag));
+            }
             if (formatRange[i].content[cv].type === RunType.Text) {
                 elms.push(formatRange[i].content[cv]);
-
             }
         }
     }
@@ -296,7 +297,6 @@ function getPlainText(elms): String {
 }
 
 function tunit(jobj: any): TU {
-    //this.jobj = jobj;
 
     return {
         status: function () {
