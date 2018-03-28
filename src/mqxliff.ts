@@ -33,8 +33,6 @@ function parseTag(str: string): ContentRun {
 }
 
 function getRichText(elms): FormatRange[] {
-    console.log("elms");
-    console.log(elms);
     var res = new Array<FormatRange>();
     var range = makeRange();
     var idToFormat = {};
@@ -365,7 +363,6 @@ function tunit(jobj: any): TU {
             else {
                 for (var i = 0; i != jobj.elements.length; ++i) {
                     if (jobj.elements[i].name == "target") {
-                        console.log(jobj.elements[i].elements)
                         jobj.elements[i].elements = setRichText(seg);
                     }
                 }

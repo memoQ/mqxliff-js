@@ -59,8 +59,6 @@ function parseTag(str) {
     return res;
 }
 function getRichText(elms) {
-    console.log("elms");
-    console.log(elms);
     var res = new Array();
     var range = makeRange();
     var idToFormat = {};
@@ -373,7 +371,6 @@ function tunit(jobj) {
             } else {
                 for (var i = 0; i != jobj.elements.length; ++i) {
                     if (jobj.elements[i].name == "target") {
-                        console.log(jobj.elements[i].elements);
                         jobj.elements[i].elements = setRichText(seg);
                     }
                 }
