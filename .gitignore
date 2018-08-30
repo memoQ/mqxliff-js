@@ -10,7 +10,6 @@ yarn-error.log*
 /build
 /build-intermediate
 /types
-/doc
 npm-debug.log*
 .DS_Store
 /package-lock.json
