@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Text | mqxliff</title>
+	<title>RunType | mqxliff</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -56,16 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_index_d_.html">&quot;index.d&quot;</a>
+					<a href="../modules/_interfaces_d_.html">&quot;interfaces.d&quot;</a>
 				</li>
 				<li>
-					<a href="../modules/_index_d_._mqxliff_.html">&quot;mqxliff&quot;</a>
-				</li>
-				<li>
-					<a href="_index_d_._mqxliff_.text.html">Text</a>
+					<a href="_interfaces_d_.runtype.html">RunType</a>
 				</li>
 			</ul>
-			<h1>Interface Text</h1>
+			<h1>Enumeration RunType</h1>
 		</div>
 	</div>
 </header>
@@ -75,67 +70,101 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A content run that contains text.</p>
+						<p>The content type of a single <a href="../interfaces/_interfaces_d_.contentrun.html">ContentRun</a> within a <a href="../interfaces/_interfaces_d_.formatrange.html">FormatRange</a>.</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<a href="_index_d_._mqxliff_.contentrun.html" class="tsd-signature-type">ContentRun</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">Text</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Properties</h3>
+						<section class="tsd-index-section ">
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_index_d_._mqxliff_.text.html#text" class="tsd-kind-icon">text</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_index_d_._mqxliff_.text.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_interfaces_d_.runtype.html#closetag" class="tsd-kind-icon">Close<wbr>Tag</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_interfaces_d_.runtype.html#emptytag" class="tsd-kind-icon">Empty<wbr>Tag</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_interfaces_d_.runtype.html#opentag" class="tsd-kind-icon">Open<wbr>Tag</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_interfaces_d_.runtype.html#structuraltag" class="tsd-kind-icon">Structural<wbr>Tag</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_interfaces_d_.runtype.html#text" class="tsd-kind-icon">Text</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="text" class="tsd-anchor"></a>
-					<h3>text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="closetag" class="tsd-anchor"></a>
+					<h3>Close<wbr>Tag</h3>
+					<div class="tsd-signature tsd-kind-icon">Close<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;CloseTag&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/37274e2/types/index.d.ts#L34">index.d.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L12">interfaces.d.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The text of this run.</p>
+							<p>The run is a single closing inline tag.</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/_index_d_._mqxliff_.runtype.html" class="tsd-signature-type">RunType</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="emptytag" class="tsd-anchor"></a>
+					<h3>Empty<wbr>Tag</h3>
+					<div class="tsd-signature tsd-kind-icon">Empty<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;EmptyTag&quot;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_index_d_._mqxliff_.contentrun.html">ContentRun</a>.<a href="_index_d_._mqxliff_.contentrun.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/37274e2/types/index.d.ts#L28">index.d.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L10">interfaces.d.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This run&#39;s type (text, or a single tag).</p>
+							<p>The run is a single empty inline tag.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="opentag" class="tsd-anchor"></a>
+					<h3>Open<wbr>Tag</h3>
+					<div class="tsd-signature tsd-kind-icon">Open<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;OpenTag&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L8">interfaces.d.ts:8</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The run is a single opening inline tag.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="structuraltag" class="tsd-anchor"></a>
+					<h3>Structural<wbr>Tag</h3>
+					<div class="tsd-signature tsd-kind-icon">Structural<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;StructuralTag&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L6">interfaces.d.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The run is a single structural tag, like &quot;{1}&quot;.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="text" class="tsd-anchor"></a>
+					<h3>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;&quot;text&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L4">interfaces.d.ts:4</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The run contains text.</p>
 						</div>
 					</div>
 				</section>
@@ -147,57 +176,60 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_interfaces_d_.html">"interfaces.d"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_mqxliff_d_.html">"mqxliff.d"</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../enums/_index_d_._mqxliff_.runtype.html" class="tsd-kind-icon">Run<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../enums/_index_d_._mqxliff_.tustatus.html" class="tsd-kind-icon">TUStatus</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.attrval.html" class="tsd-kind-icon">Attr<wbr>Val</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.contentrun.html" class="tsd-kind-icon">Content<wbr>Run</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.docinfo.html" class="tsd-kind-icon">Doc<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.document.html" class="tsd-kind-icon">Document</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.formatrange.html" class="tsd-kind-icon">Format<wbr>Range</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.inlinetag.html" class="tsd-kind-icon">Inline<wbr>Tag</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.structuraltag.html" class="tsd-kind-icon">Structural<wbr>Tag</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.tu.html" class="tsd-kind-icon">TU</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.text.html" class="tsd-kind-icon">Text</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.runtype.html" class="tsd-kind-icon">Run<wbr>Type</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_index_d_._mqxliff_.text.html#text" class="tsd-kind-icon">text</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_interfaces_d_.runtype.html#closetag" class="tsd-kind-icon">Close<wbr>Tag</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_index_d_._mqxliff_.text.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_interfaces_d_.runtype.html#emptytag" class="tsd-kind-icon">Empty<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_interfaces_d_.runtype.html#opentag" class="tsd-kind-icon">Open<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_interfaces_d_.runtype.html#structuraltag" class="tsd-kind-icon">Structural<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_interfaces_d_.runtype.html#text" class="tsd-kind-icon">Text</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_d_._mqxliff_.html#mqxliff" class="tsd-kind-icon">mqxliff</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.tustatus.html" class="tsd-kind-icon">TUStatus</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.attrval.html" class="tsd-kind-icon">Attr<wbr>Val</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.contentrun.html" class="tsd-kind-icon">Content<wbr>Run</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.docinfo.html" class="tsd-kind-icon">Doc<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.document.html" class="tsd-kind-icon">Document</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.formatrange.html" class="tsd-kind-icon">Format<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_interfaces_d_.tu.html" class="tsd-kind-icon">TU</a>
 					</li>
 				</ul>
 			</nav>

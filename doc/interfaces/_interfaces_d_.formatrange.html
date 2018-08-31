@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ContentRun | mqxliff</title>
+	<title>FormatRange | mqxliff</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -56,16 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_index_d_.html">&quot;index.d&quot;</a>
+					<a href="../modules/_interfaces_d_.html">&quot;interfaces.d&quot;</a>
 				</li>
 				<li>
-					<a href="../modules/_index_d_._mqxliff_.html">&quot;mqxliff&quot;</a>
-				</li>
-				<li>
-					<a href="_index_d_._mqxliff_.contentrun.html">ContentRun</a>
+					<a href="_interfaces_d_.formatrange.html">FormatRange</a>
 				</li>
 			</ul>
-			<h1>Interface ContentRun</h1>
+			<h1>Interface FormatRange</h1>
 		</div>
 	</div>
 </header>
@@ -75,7 +70,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A single content run within a <a href="_index_d_._mqxliff_.formatrange.html">FormatRange</a>.</p>
+						<p>A single range of formatted text within a segment. The range has uniform formatting (b/i/u/s/s).
+						A range is made up of one or more content runs, which represent either text or tags.</p>
 					</div>
 				</div>
 			</section>
@@ -83,18 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ContentRun</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="_index_d_._mqxliff_.text.html" class="tsd-signature-type">Text</a>
-							</li>
-							<li>
-								<a href="_index_d_._mqxliff_.structuraltag.html" class="tsd-signature-type">StructuralTag</a>
-							</li>
-							<li>
-								<a href="_index_d_._mqxliff_.inlinetag.html" class="tsd-signature-type">InlineTag</a>
-							</li>
-						</ul>
+						<span class="target">FormatRange</span>
 					</li>
 				</ul>
 			</section>
@@ -102,29 +87,109 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_index_d_._mqxliff_.contentrun.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#bold" class="tsd-kind-icon">bold</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#content" class="tsd-kind-icon">content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#italic" class="tsd-kind-icon">italic</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#subscript" class="tsd-kind-icon">subscript</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#superscript" class="tsd-kind-icon">superscript</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interfaces_d_.formatrange.html#underlined" class="tsd-kind-icon">underlined</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/_index_d_._mqxliff_.runtype.html" class="tsd-signature-type">RunType</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="bold" class="tsd-anchor"></a>
+					<h3>bold</h3>
+					<div class="tsd-signature tsd-kind-icon">bold<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/37274e2/types/index.d.ts#L28">index.d.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L41">interfaces.d.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This run&#39;s type (text, or a single tag).</p>
+							<p>Whether or not the range has bold formatting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="content" class="tsd-anchor"></a>
+					<h3>content</h3>
+					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <a href="_interfaces_d_.contentrun.html" class="tsd-signature-type">ContentRun</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L53">interfaces.d.ts:53</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>One or more runs that make up this range: i.e., the text and/or tags within the range.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="italic" class="tsd-anchor"></a>
+					<h3>italic</h3>
+					<div class="tsd-signature tsd-kind-icon">italic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L43">interfaces.d.ts:43</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether or not the range has italic formatting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="subscript" class="tsd-anchor"></a>
+					<h3>subscript</h3>
+					<div class="tsd-signature tsd-kind-icon">subscript<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L47">interfaces.d.ts:47</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether or not the range has subscript formatting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="superscript" class="tsd-anchor"></a>
+					<h3>superscript</h3>
+					<div class="tsd-signature tsd-kind-icon">superscript<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L49">interfaces.d.ts:49</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether or not the range has superscript formatting.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="underlined" class="tsd-anchor"></a>
+					<h3>underlined</h3>
+					<div class="tsd-signature tsd-kind-icon">underlined<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/memoQ/mqxliff-js/blob/6fe690e/types/interfaces.d.ts#L45">interfaces.d.ts:45</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether or not the range has underline formatting.</p>
 						</div>
 					</div>
 				</section>
@@ -136,54 +201,63 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_interfaces_d_.html">"interfaces.d"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_mqxliff_d_.html">"mqxliff.d"</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../enums/_index_d_._mqxliff_.runtype.html" class="tsd-kind-icon">Run<wbr>Type</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="../enums/_interfaces_d_.runtype.html" class="tsd-kind-icon">Run<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../enums/_index_d_._mqxliff_.tustatus.html" class="tsd-kind-icon">TUStatus</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="../enums/_interfaces_d_.tustatus.html" class="tsd-kind-icon">TUStatus</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.attrval.html" class="tsd-kind-icon">Attr<wbr>Val</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.attrval.html" class="tsd-kind-icon">Attr<wbr>Val</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.contentrun.html" class="tsd-kind-icon">Content<wbr>Run</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.docinfo.html" class="tsd-kind-icon">Doc<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.document.html" class="tsd-kind-icon">Document</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.contentrun.html" class="tsd-kind-icon">Content<wbr>Run</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.formatrange.html" class="tsd-kind-icon">Format<wbr>Range</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_index_d_._mqxliff_.contentrun.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#bold" class="tsd-kind-icon">bold</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#content" class="tsd-kind-icon">content</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#italic" class="tsd-kind-icon">italic</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#subscript" class="tsd-kind-icon">subscript</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#superscript" class="tsd-kind-icon">superscript</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_interfaces_d_.formatrange.html#underlined" class="tsd-kind-icon">underlined</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.docinfo.html" class="tsd-kind-icon">Doc<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.document.html" class="tsd-kind-icon">Document</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.formatrange.html" class="tsd-kind-icon">Format<wbr>Range</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.inlinetag.html" class="tsd-kind-icon">Inline<wbr>Tag</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.structuraltag.html" class="tsd-kind-icon">Structural<wbr>Tag</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.tu.html" class="tsd-kind-icon">TU</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_index_d_._mqxliff_.text.html" class="tsd-kind-icon">Text</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_d_._mqxliff_.html#mqxliff" class="tsd-kind-icon">mqxliff</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_d_.tu.html" class="tsd-kind-icon">TU</a>
 					</li>
 				</ul>
 			</nav>
