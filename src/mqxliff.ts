@@ -1,5 +1,5 @@
 import { js2xml, xml2js } from "xml-js";
-import { FormatRange, ContentRun, AttrVal, RunType, Document, TU } from './interfaces';
+import { FormatRange, ContentRun, AttrVal, RunType, Document, TU, TUStatus } from './interfaces';
 
 
 
@@ -297,8 +297,11 @@ function getPlainText(elms): String {
 function tunit(jobj: any): TU {
 
     return {
-        status: function () {
-            return jobj.attributes["mq:status"];
+        status: function (status?: TUStatus) {
+            if (status === undefined) {
+                return jobj.attributes["mq:status"];
+            }
+            jobj.attributes["mq:status"] = status;
         },
         matchRate: function () {
             if (jobj.attributes["mq:percent"]) return jobj.attributes["mq:percent"] * 1;

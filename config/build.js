@@ -46,7 +46,7 @@ function runRollup({entry, output, format, minify = false, outputDir = build}) {
 }
 
 function compileTypescript(args = '') {
-  execSync(`./node_modules/.bin/tsc --outDir ${intermediateBuild} --rootDir ./src --baseurl ./src ${args}`, {
+  execSync(`tsc --outDir ${intermediateBuild} --rootDir ./src --baseurl ./src ${args}`, {
     stdio: 'inherit',
   });
 }

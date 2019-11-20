@@ -79,8 +79,11 @@
    */
   export interface TU {
 
-    /** Returns the unit's translation status (corresponds to the colors in memoQ's translation grid). */
-    status(): TUStatus;
+    /** Gets or sets the unit's translation status (corresponds to the colors in memoQ's translation grid).
+     * @param status If omitted, function returns the translation unit's status. If present, it sets the status.
+     * @returns The translation unit's status, if used as a getter; nothing, is used as a seetter.
+     */
+    status(status?: TUStatus): TUStatus | undefined;
 
     /** Returns match rate of the last inserted match; between 0 and 102. */
     matchRate(): number;

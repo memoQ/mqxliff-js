@@ -1,6 +1,6 @@
 {
   "name": "mqxliff",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Minimalistic MQXLIFF parser and serializer",
   "main": "build/mqxliff.cjs.js",
   "module": "build/mqxliff.es.js",
@@ -47,7 +47,7 @@
     "tslint-config-shopify": "^3.0.0",
     "typescript": "^2.4.2"
   },
-  "author": "Gabor L Ugray <gabor.ugray@kilgray.com>",
+  "author": "Gabor L Ugray <gabor.ugray@memoq.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
